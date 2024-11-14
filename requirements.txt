@@ -1,0 +1,57 @@
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+jupyter
+spotipy
+requests
+# Data Manipulation and Analysis
+pandas>=1.3.0
+numpy>=1.21.0
+scipy>=1.7.0
+
+# Machine Learning
+scikit-learn>=0.24.0
+tensorflow>=2.6.0
+keras>=2.6.0
+xgboost>=1.5.0
+
+# Data Visualization
+matplotlib>=3.4.0
+seaborn>=0.11.0
+plotly>=5.3.0
+
+# Jupyter and Development
+jupyter>=1.0.0
+notebook>=6.4.0
+ipykernel>=6.0.0
+
+# Music and API Specific Libraries
+spotipy>=2.19.0
+requests>=2.26.0
+music-brainz-ngs>=0.7.1
+
+# Audio Processing
+librosa>=0.8.0
+soundfile>=0.10.0
+
+# Natural Language Processing (if doing text analysis)
+nltk>=3.6.0
+gensim>=4.1.0
+
+# Deep Learning (optional, for advanced recommendation systems)
+torch>=1.9.0
+transformers>=4.10.0
+
+# Additional Utility Libraries
+python-dotenv>=0.19.0
+tqdm>=4.62.0
+
+# Recommendation System Specific
+surprise>=0.1.1
+lightfm>=1.15.0
+
+# Optional: If doing web scraping or additional data collection
+beautifulsoup4>=4.9.0
+scrapy>=2.5.0
