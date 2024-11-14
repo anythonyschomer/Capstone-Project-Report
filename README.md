@@ -1,4 +1,4 @@
-# Capston Project Anthony Schomer
+# Capstone Project Anthony Schomer
 
 ### Create the virtual environment
 
