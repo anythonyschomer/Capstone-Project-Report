@@ -18,16 +18,7 @@ Exploratory Data Analysis (EDA) is a crucial step in understanding the dataset a
 
 ### Key Findings
 - **Distribution of Audio Features**: The distribution of key audio features such as danceability, energy, and tempo was analyzed.
-- **Correlation Analysis**: A correlation analysis was performed to understand relationships between different audio features.
-
-### Visualizations
-#### 1. Distribution of Danceability
-![Danceability Distribution](images/danceability_distribution.png)
-*Figure 1: This histogram shows the distribution of danceability scores across tracks, indicating a balanced dataset with a slight skew towards higher danceability.*
-
-#### 2. Correlation Heatmap
-![Correlation Heatmap](images/correlation_heatmap.png)
-*Figure 2: The correlation heatmap illustrates strong positive correlations between energy and loudness, suggesting that more energetic songs tend to be louder.*
+- **Insights**: The analysis provided insights into how different audio features relate to each other and their potential impact on user preferences.
 
 ### Conclusion
 The insights gained from the EDA will guide the development of our recommendation system by highlighting important features that influence user preferences.
