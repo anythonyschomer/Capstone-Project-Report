@@ -1,12 +1,12 @@
 import matplotlib
-matplotlib.use('Agg')  # Use a non-interactive backend to ensure plots are saved
+matplotlib.use('Agg')  # Use a non-interactive backend
 
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load the data with appropriate encoding
-df = pd.read_csv('top10s.csv', encoding='latin-1')  # Adjust encoding as needed
+df = pd.read_csv('top10s.csv', encoding='latin-1')
 
 # Print the original columns to check their names
 print("Original columns:", df.columns)
@@ -36,6 +36,9 @@ ax2.set_title('Correlation Heatmap of Audio Features')
 plt.tight_layout()
 
 # Save the figure as a PNG file
-plt.savefig('histogram_heatmap_output.png')  # Save the figure instead of showing it interactively
+plt.savefig('histogram_heatmap_output.png')
 
 print("Plots saved as 'histogram_heatmap_output.png'")
+
+# Optionally, you can still include plt.show() for environments that support it
+# plt.show()
