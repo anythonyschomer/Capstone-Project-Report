@@ -94,8 +94,6 @@ Hybrid & \textbf{0.845} & \textbf{0.589} \\
 
 As evident from the results, our hybrid approach outperformed both content-based and collaborative filtering methods individually, demonstrating the complementary nature of these techniques.
 
-% ... [Rest of your original content follows] ...
-
 \section{Machine Learning Component}
 
 Based on our EDA, we developed a content-based recommendation system using cosine similarity. This approach leverages the audio features and genre information to suggest similar tracks.
@@ -104,13 +102,65 @@ Based on our EDA, we developed a content-based recommendation system using cosin
 
 We combined numerical audio features with one-hot encoded genre features to create a comprehensive feature vector for each track.
 
+\begin{verbatim}
+# Feature extraction
+from spotipy.oauth2 import SpotifyClientCredentials
+import spotipy
+
+client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
+sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+
+def get_track_features(track_id):
+    features = sp.audio_features(track_id)[0]
+    return [features['danceability'], features['energy'], features['valence'], features['tempo']]
+\end{verbatim}
+
 \subsection{Similarity Computation}
 
 We used cosine similarity to compute the similarity between tracks.
 
+\begin{verbatim}
+# Similarity computation
+from sklearn.metrics.pairwise import cosine_similarity
+
+def compute_similarity(features):
+    return cosine_similarity(features)
+\end{verbatim}
+
 \subsection{Recommendation Function}
 
 We created a function to recommend similar tracks based on a given input track.
+
+\begin{verbatim}
+# Recommendation function
+def recommend_tracks(track_id, similarity_matrix, track_ids, n=5):
+    idx = track_ids.index(track_id)
+    similar_tracks = similarity_matrix[idx].argsort()[::-1][1:n+1]
+    return [track_ids[i] for i in similar_tracks]
+\end{verbatim}
+
+\subsection{Example: Mood-Based Playlist Generation}
+
+To further enhance user experience, we implemented a mood-based playlist generation function:
+
+\begin{verbatim}
+# Example: Mood-based playlist generation
+def create_mood_playlist(mood, tracks_df, n=10):
+    if mood == 'happy':
+        playlist = tracks_df.sort_values(by=['valence', 'energy'], ascending=False)
+    elif mood == 'relaxed':
+        playlist = tracks_df.sort_values(by=['acousticness', 'instrumentalness'], ascending=False)
+    else:
+        raise ValueError("Unsupported mood")
+    
+    return playlist.head(n)
+
+# Example usage
+happy_playlist = create_mood_playlist('happy', tracks_df)
+print("Happy Playlist:", happy_playlist['name'].tolist())
+\end{verbatim}
+
+This function allows users to generate playlists based on their desired mood by sorting tracks according to relevant audio features.
 
 \section{Exploratory Data Analysis}
 
