@@ -17,14 +17,14 @@ This capstone project investigates the algorithms used by music streaming servic
 ## Key Findings
 
 ### Audio Feature Distribution
-![Audio Feature Distribution](path_to_audio_feature_distribution.png)
+![Audio Feature Distribution](audio_feature_distribution.png)
 *Figure 1: Distribution of key audio features (danceability, energy, valence, and tempo)*
 
 - Most audio features exhibit normal distributions
 - Valence shows a slight positive skew, indicating a tendency towards more positive-sounding tracks
 
 ### Feature Correlations
-![Correlation Heatmap](path_to_correlation_heatmap.png)
+![Correlation Heatmap](correlation_heatmap.png)
 *Figure 2: Correlation heatmap of audio features*
 
 - Strong positive correlation (0.76) between energy and loudness
