@@ -5,27 +5,15 @@
 \documentclass[runningheads]{llncs}
 %
 \usepackage{graphicx}
-% Used for displaying a sample figure. If possible, figure files should
-% be included in EPS format.
-%
-% If you use the hyperref package, please uncomment the following line
-% to display URLs in blue roman font according to Springer's eBook style:
-% \renewcommand\UrlFont{\color{blue}\rmfamily}
 \usepackage{hyperref}
 
 \begin{document}
 %
-\title{Music streaming and song recommendations using ML algorithms}
-%
-%\titlerunning{Abbreviated paper title}
-% If the paper title is too long for the running head, you can set
-% an abbreviated paper title here
+\title{Music Streaming and Song Recommendations Using ML Algorithms}
 %
 \author{Anthony M. Schomer}
 %
-\authorrunning{A. Schomer.}
-% First names are abbreviated in the running head.
-% If there are more than two authors, 'et al.' is used.
+\authorrunning{A. Schomer}
 %
 \institute{Northwest Missouri State University, Maryville MO 64468, USA \\
 \email{tony.schomer@gmail.com}}
@@ -33,7 +21,7 @@
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-This capstone project investigates the algorithms used by music streaming services to recommend similar songs to enhance user experiences. The focus is on how platforms like Spotify and Apple Music use listeners preferences including Likes, dislikes, and other relevant information to create personalized playlists tailored to individual tastes. This project uses open datasets such as Spotify Million Playlist Dataset, Spotify Web API, and Musicbrain.org's extensive library of databases. Using smart computer programs to create a test system that suggests songs based on user behavior and preferences. It looks at how current song recommendations systems work. Machine learning methods. such as, collaborative filtering and content-based analysis to build test recommendation systems. This project also will address challenges within the current algorithms to help avoid common issues. One significant issue to avoid is users hearing the same song over and over again. These findings will help improve the music discovery online and suggest ways to innovate and enhance recommendations for listeners and introduce them to new artists. 
+This capstone project investigates the algorithms used by music streaming services to recommend similar songs to enhance user experiences. The focus is on how platforms like Spotify and Apple Music use listeners' preferences including likes, dislikes, and other relevant information to create personalized playlists tailored to individual tastes. This project uses open datasets such as Spotify Million Playlist Dataset, Spotify Web API, and Musicbrain.org's extensive library of databases. Using smart computer programs to create a test system that suggests songs based on user behavior and preferences. It looks at how current song recommendation systems work using machine learning methods such as collaborative filtering and content-based analysis to build test recommendation systems. This project also addresses challenges within the current algorithms to help avoid common issues. One significant issue to avoid is users hearing the same song over and over again. These findings will help improve music discovery online and suggest ways to innovate and enhance recommendations for listeners and introduce them to new artists.
 
 \keywords{music \and streaming \and recommendations \and data \and user experience}
 \end{abstract}
@@ -44,97 +32,37 @@ Our music recommendation system employs a hybrid approach combining content-base
 
 \subsection{Feature Engineering}
 
-We extracted audio features from the Spotify API, including tempo, energy, danceability, and acousticness. These features were combined with one-hot encoded genre information to create a comprehensive feature vector for each track. The process can be summarized as follows:
+We extracted audio features from the Spotify API, including tempo, energy, danceability, and acousticness. These features were combined with one-hot encoded genre information to create a comprehensive feature vector for each track.
 
-\begin{enumerate}
-    \item Audio feature extraction using Spotify API
-    \item One-hot encoding of genre information
-    \item Normalization of numerical features
-    \item Combining audio and genre features into a single vector
-\end{enumerate}
+\subsection{Exploratory Data Analysis}
 
-\subsection{Content-Based Filtering}
-
-For the content-based component, we computed cosine similarity between track feature vectors to identify similar songs. The implementation is as follows:
-
-\begin{verbatim}
-from sklearn.metrics.pairwise import cosine_similarity
-
-similarity_matrix = cosine_similarity(features)
-\end{verbatim}
-
-\subsection{Collaborative Filtering}
-
-Our collaborative filtering component utilized matrix factorization to learn latent representations of users and items. We employed alternating least squares (ALS) optimization to minimize the following objective function:
-
-\[
-\min_{U,V} \sum_{(i,j) \in \Omega} (R_{ij} - u_i^T v_j)^2 + \lambda(||u_i||^2 + ||v_j||^2)
-\]
-
-Where $R_{ij}$ represents the rating of user $i$ for item $j$, $u_i$ and $v_j$ are latent factors, and $\lambda$ is a regularization parameter.
-
-\subsection{Model Evaluation}
-
-We evaluated our models using 5-fold cross-validation, with 80\% of data used for training and 20\% for testing. Performance was measured using Normalized Discounted Cumulative Gain (NDCG) and Mean Average Precision (MAP). Table \ref{tab:model_performance} summarizes the performance of different approaches:
-
-\begin{table}
-\centering
-\begin{tabular}{lcc}
-\hline
-Model & NDCG@10 & MAP@10 \\
-\hline
-Content-based & 0.721 & 0.412 \\
-Collaborative & 0.803 & 0.537 \\
-Hybrid & \textbf{0.845} & \textbf{0.589} \\
-\hline
-\end{tabular}
-\caption{Performance comparison of recommendation models}
-\label{tab:model_performance}
-\end{table}
-
-As evident from the results, our hybrid approach outperformed both content-based and collaborative filtering methods individually, demonstrating the complementary nature of these techniques.
-
-% ... [Rest of your original content follows] ...
-
-\section{Machine Learning Component}
-
-Based on our EDA, we developed a content-based recommendation system using cosine similarity. This approach leverages the audio features and genre information to suggest similar tracks.
-
-\subsection{Feature Engineering}
-
-We combined numerical audio features with one-hot encoded genre features to create a comprehensive feature vector for each track.
-
-\subsection{Similarity Computation}
-
-We used cosine similarity to compute the similarity between tracks.
-
-\subsection{Recommendation Function}
-
-We created a function to recommend similar tracks based on a given input track.
-
-\section{Exploratory Data Analysis}
+Our analysis of audio features reveals interesting patterns in the dataset.
 
 \subsection{Distribution of Audio Features}
 
+Figure \ref{fig:audio_features} shows the distribution of key audio features such as danceability, energy, valence, and tempo.
+
 \begin{figure}[h]
-\centering
-\includegraphics[width=0.8\textwidth]{audio_features_distribution.png}
-\caption{Distribution of key audio features: danceability, energy, valence, and tempo. The histograms show that energy and danceability are relatively normally distributed, while valence has a slight positive skew.}
-\label{fig:audio_features}
+    \centering
+    \includegraphics[width=0.8\textwidth]{audio_feature_distribution.png} % Ensure this file is uploaded without 'S'
+    \caption{Distribution of key audio features: danceability, energy, valence, and tempo. The histograms show that energy and danceability are relatively normally distributed, while valence has a slight positive skew.}
+    \label{fig:audio_features}
 \end{figure}
 
-Our analysis of audio features reveals interesting patterns in the dataset. As shown in Figure \ref{fig:audio_features}, danceability and energy exhibit fairly normal distributions, suggesting a balanced range of songs in terms of these attributes. The valence distribution shows a slight positive skew, indicating a tendency towards more positive or upbeat songs in the dataset.
+As shown in Figure \ref{fig:audio_features}, danceability and energy exhibit fairly normal distributions, suggesting a balanced range of songs in terms of these attributes. The valence distribution shows a slight positive skew, indicating a tendency towards more positive or upbeat songs in the dataset.
 
 \subsection{Correlation Analysis}
 
+Figure \ref{fig:correlation} presents the correlation between different audio features.
+
 \begin{figure}[h]
-\centering
-\includegraphics[width=0.8\textwidth]{correlation_heatmap.png}
-\caption{Correlation heatmap of audio features. Strong positive correlations are observed between energy and loudness, while acousticness shows negative correlations with several features.}
-\label{fig:correlation}
+    \centering
+    \includegraphics[width=0.8\textwidth]{correlation_heatmap.png} % Ensure this file is uploaded
+    \caption{Correlation heatmap of audio features. Strong positive correlations are observed between energy and loudness, while acousticness shows negative correlations with several features.}
+    \label{fig:correlation}
 \end{figure}
 
-Figure \ref{fig:correlation} presents the correlation between different audio features. Notable observations include:
+Notable observations include:
 
 \begin{itemize}
     \item A strong positive correlation between energy and loudness (0.76), suggesting that more energetic songs tend to be louder.
@@ -148,26 +76,22 @@ These insights inform our understanding of the relationships between audio featu
 
 Our analysis of the Spotify Million Playlist Dataset yielded several key insights:
 
-\begin{enumerate}
-    \item \textbf{Audio Feature Distributions:} As shown in Figure \ref{fig:audio_features}, most audio features exhibit normal distributions, with valence showing a slight positive skew. This suggests a balanced dataset with a tendency towards more positive-sounding tracks.
+1. **Audio Feature Distributions:** As shown in Figure \ref{fig:audio_features}, most audio features exhibit normal distributions, with valence showing a slight positive skew. This suggests a balanced dataset with a tendency towards more positive-sounding tracks.
     
-    \item \textbf{Feature Correlations:} The correlation analysis (Figure \ref{fig:correlation}) revealed strong relationships between certain features. For example, the high correlation between energy and loudness (0.76) indicates that these features often go hand-in-hand in music perception.
+2. **Feature Correlations:** The correlation analysis (Figure \ref{fig:correlation}) revealed strong relationships between certain features. For example, the high correlation between energy and loudness (0.76) indicates that these features often go hand-in-hand in music perception.
     
-    \item \textbf{Genre Influence:} Our one-hot encoding of genres allowed us to capture genre-specific patterns in recommendations. Popular genres like Pop and Rock dominated the dataset, which may lead to bias in recommendations towards these genres.
+3. **Genre Influence:** Our one-hot encoding of genres allowed us to capture genre-specific patterns in recommendations. Popular genres like Pop and Rock dominated the dataset, which may lead to bias in recommendations towards these genres.
     
-    \item \textbf{Content-Based Approach:} Our cosine similarity-based recommendation system provides consistent suggestions based on audio features and genre. However, this approach may lack serendipity in discovering entirely new styles of music.
-    
-    \item \textbf{Mood-Based Playlists:} The moderate positive correlation between danceability and valence (0.39) suggests potential for creating mood-based playlists, particularly for upbeat, danceable tracks.
-\end{enumerate}
+4. **Content-Based Approach:** Our cosine similarity-based recommendation system provides consistent suggestions based on audio features and genre. However, this approach may lack serendipity in discovering entirely new styles of music.
+ 
+5. **Mood-Based Playlists:** The moderate positive correlation between danceability and valence (0.39) suggests potential for creating mood-based playlists, particularly for upbeat, danceable tracks.
 
 These findings provide valuable insights for improving music recommendation systems and enhancing user experiences on streaming platforms.
 
 Future work could involve:
-\begin{itemize}
-    \item Incorporating collaborative filtering to balance content-based recommendations with user preferences.
-    \item Exploring time-based features to capture evolving music trends.
-    \item Implementing diversity measures to ensure a mix of familiar and novel recommendations.
-\end{itemize}
+- Incorporating collaborative filtering to balance content-based recommendations with user preferences.
+- Exploring time-based features to capture evolving music trends.
+- Implementing diversity measures to ensure a mix of familiar and novel recommendations.
 
 This analysis provides a foundation for understanding music recommendation systems and highlights the complex interplay of factors that influence listener preferences and streaming platform algorithms.
 
@@ -183,10 +107,7 @@ The following resources were utilized and referenced throughout this project:
     \item \textbf{GitHub Repository:} \href{https://github.com/anythonyschomer/Capstone-Project-Report}{Capstone Project Report}
 \end{itemize}
 
-% Any additional dashed information or notes can go here
-\vspace{-1em} % Space before additional notes
-\rule{\textwidth}{0.4pt} % Horizontal line for separation
-\vspace{-0.5em} % Space before additional notes
+\vspace{1em}
 This project was conducted by Anthony M. Schomer at Northwest Missouri State University.
 
 \end{document}
