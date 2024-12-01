@@ -26,6 +26,34 @@ This capstone project investigates the algorithms used by music streaming servic
 \keywords{music \and streaming \and recommendations \and data \and user experience}
 \end{abstract}
 
+\section{Introduction}
+[Your existing introduction content here]
+
+\section{Data Processing and Methodology}
+
+\subsection{Data Ingestion}
+Our project utilized the Spotify Million Playlist Dataset, which contains 1 million playlists created by Spotify users. We accessed this data through the Spotify Web API, which provided a JSON format of playlist information including track details, audio features, and user interactions.
+
+\subsection{Data Cleaning}
+The raw data required several cleaning steps:
+\begin{itemize}
+    \item Removing duplicate tracks within playlists
+    \item Handling missing values in audio features
+    \item Standardizing genre labels
+    \item Filtering out playlists with fewer than 10 tracks
+\end{itemize}
+
+We used Python's Pandas library for data manipulation and cleaning tasks.
+
+\subsection{Analysis Process}
+Our analysis involved several key steps:
+\begin{enumerate}
+    \item Exploratory Data Analysis (EDA) of audio features and playlist characteristics
+    \item Feature engineering to create relevant input variables for our models
+    \item Implementation of content-based and collaborative filtering algorithms
+    \item Evaluation of model performance using metrics such as precision, recall, and mean average precision
+\end{enumerate}
+
 \section{Predictive Analysis and Model Building}
 
 Our music recommendation system employs a hybrid approach combining content-based and collaborative filtering techniques. This section details the process of building and evaluating our predictive models.
@@ -44,7 +72,7 @@ Figure \ref{fig:audio_features} shows the distribution of key audio features suc
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{audio_feature_distribution.png} % Ensure this file is uploaded without 'S'
+    \includegraphics[width=0.8\textwidth]{audio_feature_distribution.png}
     \caption{Distribution of key audio features: danceability, energy, valence, and tempo. The histograms show that energy and danceability are relatively normally distributed, while valence has a slight positive skew.}
     \label{fig:audio_features}
 \end{figure}
@@ -57,7 +85,7 @@ Figure \ref{fig:correlation} presents the correlation between different audio fe
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{correlation_heatmap.png} % Ensure this file is uploaded
+    \includegraphics[width=0.8\textwidth]{correlation_heatmap.png}
     \caption{Correlation heatmap of audio features. Strong positive correlations are observed between energy and loudness, while acousticness shows negative correlations with several features.}
     \label{fig:correlation}
 \end{figure}
@@ -71,6 +99,27 @@ Notable observations include:
 \end{itemize}
 
 These insights inform our understanding of the relationships between audio features and can guide the development of our recommendation system.
+
+\section{Machine Learning Implementation}
+
+\subsection{Content-Based Filtering}
+We implemented a content-based recommender using cosine similarity on audio features. The process involved:
+\begin{enumerate}
+    \item Vectorizing tracks based on their audio features and genre
+    \item Computing cosine similarity between track vectors
+    \item Recommending tracks with the highest similarity scores
+\end{enumerate}
+
+\subsection{Collaborative Filtering}
+We used matrix factorization for collaborative filtering:
+\begin{enumerate}
+    \item Creating a user-item interaction matrix
+    \item Applying Singular Value Decomposition (SVD) to factorize the matrix
+    \item Predicting user preferences based on latent factors
+\end{enumerate}
+
+\subsection{Hybrid Approach}
+We combined content-based and collaborative filtering results using a weighted average to produce final recommendations.
 
 \section{Findings and Conclusions}
 
@@ -87,6 +136,15 @@ Our analysis of the Spotify Million Playlist Dataset yielded several key insight
 5. **Mood-Based Playlists:** The moderate positive correlation between danceability and valence (0.39) suggests potential for creating mood-based playlists, particularly for upbeat, danceable tracks.
 
 These findings provide valuable insights for improving music recommendation systems and enhancing user experiences on streaming platforms.
+
+\subsection{Practical Applications}
+Our findings can be applied to improve music recommendation systems in several ways:
+\begin{itemize}
+    \item Mood-based playlists: Utilizing the correlation between danceability and valence, we can create playlists that match users' current mood preferences.
+    \item Genre exploration: By understanding the relationships between audio features and genres, we can introduce users to new genres that align with their listening patterns.
+    \item Diversity in recommendations: Our hybrid approach allows for a balance between familiar and novel recommendations, potentially increasing user engagement and music discovery.
+    \item Personalized radio stations: Using our content-based filtering, we can create personalized radio stations that smoothly transition between songs with similar audio characteristics.
+\end{itemize}
 
 Future work could involve:
 - Incorporating collaborative filtering to balance content-based recommendations with user preferences.
@@ -105,6 +163,15 @@ The following resources were utilized and referenced throughout this project:
     \item \href{https://www.acm.org/publications/policies/duplicate-publication}{ACM: Duplicate Publication Policy}
     \item \href{https://www.overleaf.com/project}{Overleaf Project}
     \item \textbf{GitHub Repository:} \href{https://github.com/anythonyschomer/Capstone-Project-Report}{Capstone Project Report}
+\end{itemize}
+
+\subsection{GitHub Repository Contents}
+Our GitHub repository (\url{https://github.com/anythonyschomer/Capstone-Project-Report}) contains:
+\begin{itemize}
+    \item Python scripts for data processing and model implementation
+    \item Jupyter notebooks with detailed analysis and visualizations
+    \item Dataset samples and feature descriptions
+    \item Documentation on how to run the recommendation system
 \end{itemize}
 
 \vspace{1em}
