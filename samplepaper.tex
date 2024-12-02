@@ -153,6 +153,29 @@ Future work could involve:
 
 This analysis provides a foundation for understanding music recommendation systems and highlights the complex interplay of factors that influence listener preferences and streaming platform algorithms.
 
+\section{Limitations and Potential Biases}
+
+Our music recommendation system, while effective, has several limitations and potential biases that should be acknowledged:
+
+\subsection{Popularity Bias}
+The system may favor popular songs, potentially reinforcing existing popularity and limiting exposure for emerging artists[1]. This "rich-get-richer" effect can create a feedback loop, making it challenging for less-known artists to gain visibility.
+
+\subsection{Gender and Demographic Biases}
+Research has shown that recommendation algorithms can propagate or even amplify pre-existing gender biases[3]. Our system may inadvertently favor certain demographic groups, potentially affecting the diversity of recommendations.
+
+\subsection{Cold Start Problem}
+New users or artists with limited data may receive less accurate recommendations, a common issue known as the cold start problem[2]. This can disadvantage new entrants to the platform.
+
+\subsection{Filter Bubble Effect}
+By focusing on user preferences, our system might create "filter bubbles," limiting users' exposure to diverse content and potentially homogenizing musical tastes[4].
+
+To mitigate these biases, future work could explore techniques such as:
+\begin{itemize}
+    \item Re-ranking algorithms to promote diversity
+    \item Incorporating fairness metrics in the recommendation process
+    \item Implementing hybrid approaches that balance popularity with novelty
+\end{itemize}
+
 \section{Additional Resources}
 The following resources were utilized and referenced throughout this project:
 
@@ -176,5 +199,45 @@ Our GitHub repository (\url{https://github.com/anythonyschomer/Capstone-Project-
 
 \vspace{1em}
 This project was conducted by Anthony M. Schomer at Northwest Missouri State University.
+
+\appendix
+\section{Code Sample: Feature Engineering}
+
+Below is a Python code snippet demonstrating our feature engineering process for audio features:
+
+\begin{verbatim}
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+
+def engineer_audio_features(df):
+    # Select relevant features
+    audio_features = ['danceability', 'energy', 'loudness', 'speechiness', 
+                      'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo']
+    
+    # Create a copy of the dataframe with selected features
+    X = df[audio_features].copy()
+    
+    # Handle missing values
+    X = X.fillna(X.mean())
+    
+    # Normalize features
+    scaler = StandardScaler()
+    X_scaled = scaler.fit_transform(X)
+    
+    # Create interaction features
+    X['energy_valence'] = X['energy'] * X['valence']
+    X['danceability_tempo'] = X['danceability'] * X['tempo']
+    
+    # Bin tempo into categories
+    X['tempo_category'] = pd.cut(X['tempo'], bins=5, labels=['Very Slow', 'Slow', 'Medium', 'Fast', 'Very Fast'])
+    
+    return X
+
+# Usage
+processed_features = engineer_audio_features(raw_data)
+\end{verbatim}
+
+This code demonstrates how we preprocess audio features, handle missing values, normalize the data, create interaction features, and categorize continuous variables like tempo.
 
 \end{document}
