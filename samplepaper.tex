@@ -3,23 +3,23 @@
 % Version 2.20 of 2017/10/04
 %
 \documentclass[runningheads]{llncs}
-%
+
 \usepackage{graphicx}
 \usepackage{hyperref}
 
 \begin{document}
-%
+
 \title{Music Streaming and Song Recommendations Using ML Algorithms}
-%
+
 \author{Anthony M. Schomer}
-%
+
 \authorrunning{A. Schomer}
-%
+
 \institute{Northwest Missouri State University, Maryville MO 64468, USA \\
 \email{tony.schomer@gmail.com}}
-%
-\maketitle              % typeset the header of the contribution
-%
+
+\maketitle
+
 \begin{abstract}
 This capstone project investigates the algorithms used by music streaming services to recommend similar songs to enhance user experiences. The focus is on how platforms like Spotify and Apple Music use listeners' preferences including likes, dislikes, and other relevant information to create personalized playlists tailored to individual tastes. This project uses open datasets such as Spotify Million Playlist Dataset, Spotify Web API, and Musicbrain.org's extensive library of databases. Using smart computer programs to create a test system that suggests songs based on user behavior and preferences. It looks at how current song recommendation systems work using machine learning methods such as collaborative filtering and content-based analysis to build test recommendation systems. This project also addresses challenges within the current algorithms to help avoid common issues. One significant issue to avoid is users hearing the same song over and over again. These findings will help improve music discovery online and suggest ways to innovate and enhance recommendations for listeners and introduce them to new artists.
 
@@ -27,12 +27,27 @@ This capstone project investigates the algorithms used by music streaming servic
 \end{abstract}
 
 \section{Introduction}
-[Your existing introduction content here]
+
+From vinyl record players, 8-track, cassettes, CDs, and now streaming. Think about how the music landscape has changed and in a surprisingly short amount of time. This change has fundamentally altered how society as a whole consumes music, with streaming platforms becoming the primary medium for music discovery and enjoyment. As the amount and access of available music grows exponentially, the challenge of connecting listeners with songs they will enjoy becomes increasingly complex. This is where machine learning algorithms play a crucial role in enhancing user experience through personalized song recommendations.
+
+This paper investigates the sophisticated algorithms employed by music streaming services such as Spotify and Apple Music to recommend songs and create personalized playlists. It explores how these platforms leverage user preferences, listening history, and song characteristics to curate tailored music experiences.
+
+The research utilizes open datasets, including the Spotify Million Playlist Dataset and the Musicbrainz database, to analyze patterns in user behavior and music features. By employing machine learning techniques such as collaborative filtering and content-based analysis, the aim is to develop and test recommendation systems that can effectively predict user preferences and suggest new, relevant music.
+
+Key objectives of this study include:
+\begin{itemize}
+    \item Analyzing the effectiveness of current recommendation algorithms in music streaming platforms
+    \item Developing a test system for song recommendations based on user behavior and preferences
+    \item Exploring the balance between familiarity and novelty in music recommendations
+    \item Addressing common challenges in recommendation systems, such as the "filter bubble" effect and over-repetition of popular tracks
+\end{itemize}
+
+Through this research, the study seeks to contribute to the ongoing improvement of music discovery algorithms, potentially enhancing the way millions of users interact with and discover music in the digital age. The findings aim to provide insights that could lead to more diverse, personalized, and engaging music streaming experiences for listeners worldwide.
 
 \section{Data Processing and Methodology}
 
 \subsection{Data Ingestion}
-Our project utilized the Spotify Million Playlist Dataset, which contains 1 million playlists created by Spotify users. We accessed this data through the Spotify Web API, which provided a JSON format of playlist information including track details, audio features, and user interactions.
+The project utilized the Spotify Million Playlist Dataset, which contains 1 million playlists created by Spotify users. This data was accessed through the Spotify Web API, which provided a JSON format of playlist information including track details, audio features, and user interactions.
 
 \subsection{Data Cleaning}
 The raw data required several cleaning steps:
@@ -43,28 +58,28 @@ The raw data required several cleaning steps:
     \item Filtering out playlists with fewer than 10 tracks
 \end{itemize}
 
-We used Python's Pandas library for data manipulation and cleaning tasks.
+Python's Pandas library was used for data manipulation and cleaning tasks.
 
 \subsection{Analysis Process}
-Our analysis involved several key steps:
+The analysis involved several key steps:
 \begin{enumerate}
     \item Exploratory Data Analysis (EDA) of audio features and playlist characteristics
-    \item Feature engineering to create relevant input variables for our models
+    \item Feature engineering to create relevant input variables for the models
     \item Implementation of content-based and collaborative filtering algorithms
     \item Evaluation of model performance using metrics such as precision, recall, and mean average precision
 \end{enumerate}
 
 \section{Predictive Analysis and Model Building}
 
-Our music recommendation system employs a hybrid approach combining content-based and collaborative filtering techniques. This section details the process of building and evaluating our predictive models.
+The music recommendation system employs a hybrid approach combining content-based and collaborative filtering techniques. This section details the process of building and evaluating the predictive models.
 
 \subsection{Feature Engineering}
 
-We extracted audio features from the Spotify API, including tempo, energy, danceability, and acousticness. These features were combined with one-hot encoded genre information to create a comprehensive feature vector for each track.
+Audio features were extracted from the Spotify API, including tempo, energy, danceability, and acousticness. These features were combined with one-hot encoded genre information to create a comprehensive feature vector for each track.
 
 \subsection{Exploratory Data Analysis}
 
-Our analysis of audio features reveals interesting patterns in the dataset.
+The analysis of audio features reveals interesting patterns in the dataset.
 
 \subsection{Distribution of Audio Features}
 
@@ -98,12 +113,12 @@ Notable observations include:
     \item Danceability has a moderate positive correlation with valence (0.39), implying that more danceable songs tend to be more positive in mood.
 \end{itemize}
 
-These insights inform our understanding of the relationships between audio features and can guide the development of our recommendation system.
+These insights inform the understanding of the relationships between audio features and can guide the development of the recommendation system.
 
 \section{Machine Learning Implementation}
 
 \subsection{Content-Based Filtering}
-We implemented a content-based recommender using cosine similarity on audio features. The process involved:
+A content-based recommender was implemented using cosine similarity on audio features. The process involved:
 \begin{enumerate}
     \item Vectorizing tracks based on their audio features and genre
     \item Computing cosine similarity between track vectors
@@ -111,7 +126,7 @@ We implemented a content-based recommender using cosine similarity on audio feat
 \end{enumerate}
 
 \subsection{Collaborative Filtering}
-We used matrix factorization for collaborative filtering:
+Matrix factorization was used for collaborative filtering:
 \begin{enumerate}
     \item Creating a user-item interaction matrix
     \item Applying Singular Value Decomposition (SVD) to factorize the matrix
@@ -119,55 +134,55 @@ We used matrix factorization for collaborative filtering:
 \end{enumerate}
 
 \subsection{Hybrid Approach}
-We combined content-based and collaborative filtering results using a weighted average to produce final recommendations.
+Content-based and collaborative filtering results were combined using a weighted average to produce final recommendations.
 
 \section{Findings and Conclusions}
 
-Our analysis of the Spotify Million Playlist Dataset yielded several key insights:
+The analysis of the Spotify Million Playlist Dataset yielded several key insights:
 
 1. **Audio Feature Distributions:** As shown in Figure \ref{fig:audio_features}, most audio features exhibit normal distributions, with valence showing a slight positive skew. This suggests a balanced dataset with a tendency towards more positive-sounding tracks.
     
 2. **Feature Correlations:** The correlation analysis (Figure \ref{fig:correlation}) revealed strong relationships between certain features. For example, the high correlation between energy and loudness (0.76) indicates that these features often go hand-in-hand in music perception.
     
-3. **Genre Influence:** Our one-hot encoding of genres allowed us to capture genre-specific patterns in recommendations. Popular genres like Pop and Rock dominated the dataset, which may lead to bias in recommendations towards these genres.
+3. **Genre Influence:** The one-hot encoding of genres allowed for capturing genre-specific patterns in recommendations. Popular genres like Pop and Rock dominated the dataset, which may lead to bias in recommendations towards these genres.
     
-4. **Content-Based Approach:** Our cosine similarity-based recommendation system provides consistent suggestions based on audio features and genre. However, this approach may lack serendipity in discovering entirely new styles of music.
+4. **Content-Based Approach:** The cosine similarity-based recommendation system provides consistent suggestions based on audio features and genre. However, this approach may lack serendipity in discovering entirely new styles of music.
  
 5. **Mood-Based Playlists:** The moderate positive correlation between danceability and valence (0.39) suggests potential for creating mood-based playlists, particularly for upbeat, danceable tracks.
 
 These findings provide valuable insights for improving music recommendation systems and enhancing user experiences on streaming platforms.
 
 \subsection{Practical Applications}
-Our findings can be applied to improve music recommendation systems in several ways:
+The findings can be applied to improve music recommendation systems in several ways:
 \begin{itemize}
-    \item Mood-based playlists: Utilizing the correlation between danceability and valence, we can create playlists that match users' current mood preferences.
-    \item Genre exploration: By understanding the relationships between audio features and genres, we can introduce users to new genres that align with their listening patterns.
-    \item Diversity in recommendations: Our hybrid approach allows for a balance between familiar and novel recommendations, potentially increasing user engagement and music discovery.
-    \item Personalized radio stations: Using our content-based filtering, we can create personalized radio stations that smoothly transition between songs with similar audio characteristics.
+    \item Mood-based playlists: Utilizing the correlation between danceability and valence can create playlists that match users' current mood preferences.
+    \item Genre exploration: Understanding the relationships between audio features and genres can introduce users to new genres that align with their listening patterns.
+    \item Diversity in recommendations: This hybrid approach allows for a balance between familiar and unfamiliar, unknown recommendations, potentially increasing user engagement and music discovery.
+    \item Personalized radio stations: Using content-based filtering, personalized radio stations can be created that smoothly transition between songs with similar audio characteristics.
 \end{itemize}
 
 Future work could involve:
 - Incorporating collaborative filtering to balance content-based recommendations with user preferences.
 - Exploring time-based features to capture evolving music trends.
-- Implementing diversity measures to ensure a mix of familiar and novel recommendations.
+- Implementing diversity measures to ensure a mix of familiarity and also unfamiliar, unknown recommendations.
 
 This analysis provides a foundation for understanding music recommendation systems and highlights the complex interplay of factors that influence listener preferences and streaming platform algorithms.
 
 \section{Limitations and Potential Biases}
 
-Our music recommendation system, while effective, has several limitations and potential biases that should be acknowledged:
+This music recommendation system, while effective, has several limitations and potential biases that should be acknowledged:
 
 \subsection{Popularity Bias}
-The system may favor popular songs, potentially reinforcing existing popularity and limiting exposure for emerging artists[1]. This "rich-get-richer" effect can create a feedback loop, making it challenging for less-known artists to gain visibility.
+The system may favor popular songs, potentially reinforcing existing popularity and limiting exposure for emerging artists. This "rich-get-richer" effect can create a feedback loop, making it challenging for less-known artists to gain visibility.
 
 \subsection{Gender and Demographic Biases}
-Research has shown that recommendation algorithms can propagate or even amplify pre-existing gender biases[3]. Our system may inadvertently favor certain demographic groups, potentially affecting the diversity of recommendations.
+Research has shown that recommendation algorithms can propagate or even amplify pre-existing gender biases. The system may inadvertently favor certain demographic groups, potentially affecting the diversity of recommendations.
 
 \subsection{Cold Start Problem}
-New users or artists with limited data may receive less accurate recommendations, a common issue known as the cold start problem[2]. This can disadvantage new entrants to the platform.
+New users or artists with limited data may receive less accurate recommendations, a common issue known as the cold start problem. This can disadvantage new entrants to the platform.
 
 \subsection{Filter Bubble Effect}
-By focusing on user preferences, our system might create "filter bubbles," limiting users' exposure to diverse content and potentially homogenizing musical tastes[4].
+By focusing on user preferences, the system might create "filter bubbles," limiting users' exposure to diverse content and potentially homogenizing musical tastes.
 
 To mitigate these biases, future work could explore techniques such as:
 \begin{itemize}
@@ -189,7 +204,7 @@ The following resources were utilized and referenced throughout this project:
 \end{itemize}
 
 \subsection{GitHub Repository Contents}
-Our GitHub repository (\url{https://github.com/anythonyschomer/Capstone-Project-Report}) contains:
+The GitHub repository (\url{https://github.com/anythonyschomer/Capstone-Project-Report}) contains:
 \begin{itemize}
     \item Python scripts for data processing and model implementation
     \item Jupyter notebooks with detailed analysis and visualizations
@@ -203,7 +218,7 @@ This project was conducted by Anthony M. Schomer at Northwest Missouri State Uni
 \appendix
 \section{Code Sample: Feature Engineering}
 
-Below is a Python code snippet demonstrating our feature engineering process for audio features:
+Below is a Python code snippet demonstrating the feature engineering process for audio features:
 
 \begin{verbatim}
 import pandas as pd
@@ -238,6 +253,6 @@ def engineer_audio_features(df):
 processed_features = engineer_audio_features(raw_data)
 \end{verbatim}
 
-This code demonstrates how we preprocess audio features, handle missing values, normalize the data, create interaction features, and categorize continuous variables like tempo.
+This code demonstrates how audio features are preprocessed, missing values are handled, data is normalized, interaction features are created, and continuous variables like tempo are categorized.
 
 \end{document}
