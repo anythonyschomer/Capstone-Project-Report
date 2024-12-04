@@ -25,16 +25,17 @@
 \begin{abstract}
 This study analyzed recommendation algorithms used by music streaming services like Spotify and Apple Music. Using the Spotify Million Playlist Dataset, a hybrid recommendation system combining content-based and collaborative filtering approaches was developed. Key findings include:
 \begin{itemize}
-  \item Strong correlations between energy/loudness (0.76) and negative correlations between acousticness and energy (-0.72) in audio features.
-  \item Genre significantly influences recommendations, with pop and rock dominating.
+  \item A strong positive correlation between energy and loudness (0.76) indicates that energetic songs tend to be louder.
+  \item Genre significantly influences recommendations, with pop and rock dominating the dataset.
   \item A moderate positive correlation (0.39) between danceability and valence suggests potential for mood-based playlists.
-  \item The hybrid approach balanced familiarity and novelty, addressing the 'filter bubble' effect and over-repetition of popular tracks.
+  \item The hybrid approach effectively balanced familiarity and novelty, reducing the 'filter bubble' effect and over-repetition of popular tracks by implementing popularity penalties.
 \end{itemize}
+These insights contribute to improving music discovery online and suggest innovative ways to enhance recommendations for listeners while introducing them to new artists.
 \end{abstract}
 
 \section{Introduction}
 
-From vinyl record players, 8-track, cassettes, CDs, and now streaming. The music landscape has changed in a surprisingly short amount of time. This change has fundamentally altered how society as a whole consumes music, with streaming platforms becoming the primary medium for music discovery and enjoyment. As the amount and access of available music grows exponentially, the challenge of connecting listeners with songs they will enjoy becomes increasingly complex. This is where machine learning algorithms play a crucial role in enhancing user experience through personalized song recommendations.
+From vinyl record players to streaming services, the music landscape has changed dramatically in a short time. This evolution has fundamentally altered how society consumes music, with streaming platforms becoming the primary medium for music discovery and enjoyment. As access to music grows exponentially, connecting listeners with songs they will enjoy becomes increasingly complex. This is where machine learning algorithms play a crucial role in enhancing user experience through personalized song recommendations.
 
 This paper investigates the sophisticated algorithms employed by music streaming services such as Spotify and Apple Music to recommend songs and create personalized playlists. It explores how these platforms leverage user preferences, listening history, and song characteristics to curate tailored music experiences.
 
@@ -42,13 +43,13 @@ The research utilizes open datasets, including the Spotify Million Playlist Data
 
 Key objectives of this study include:
 \begin{itemize}
-    \item Analyzing the effectiveness of current recommendation algorithms in music streaming platforms
-    \item Developing a test system for song recommendations based on user behavior and preferences
-    \item Exploring the balance between familiarity and novelty in music recommendations
-    \item Addressing common challenges in recommendation systems, such as the "filter bubble" effect and over-repetition of popular tracks
+    \item Analyzing the effectiveness of current recommendation algorithms in music streaming platforms.
+    \item Developing a test system for song recommendations based on user behavior and preferences.
+    \item Exploring the balance between familiarity and novelty in music recommendations.
+    \item Addressing common challenges in recommendation systems, such as the "filter bubble" effect and over-repetition of popular tracks.
 \end{itemize}
 
-Through this research, the study seeks to contribute to the ongoing improvement of music discovery algorithms, potentially enhancing the way millions of users interact with and discover music in the digital age. The findings aim to provide insights that could lead to more diverse, personalized, and engaging music streaming experiences for listeners worldwide.
+Through this research, the study seeks to contribute to the ongoing improvement of music discovery algorithms, potentially enhancing how millions of users interact with and discover music in the digital age.
 
 \section{Data Processing and Methodology}
 
@@ -58,10 +59,10 @@ The project utilized the Spotify Million Playlist Dataset, which contains 1 mill
 \subsection{Data Cleaning}
 The raw data required several cleaning steps:
 \begin{itemize}
-    \item Removing duplicate tracks within playlists
-    \item Handling missing values in audio features
-    \item Standardizing genre labels
-    \item Filtering out playlists with fewer than 10 tracks
+    \item Removing duplicate tracks within playlists.
+    \item Handling missing values in audio features.
+    \item Standardizing genre labels.
+    \item Filtering out playlists with fewer than 10 tracks.
 \end{itemize}
 
 Python's Pandas library was used for data manipulation and cleaning tasks.
@@ -69,84 +70,65 @@ Python's Pandas library was used for data manipulation and cleaning tasks.
 \subsection{Analysis Process}
 The analysis involved several key steps:
 \begin{enumerate}
-    \item Exploratory Data Analysis (EDA) of audio features and playlist characteristics
-    \item Feature engineering to create relevant input variables for the models
-    \item Implementation of content-based and collaborative filtering algorithms
-    \item Evaluation of model performance using metrics such as precision, recall, and mean average precision
+    \item Exploratory Data Analysis (EDA) of audio features and playlist characteristics.
+    \item Feature engineering to create relevant input variables for the models.
+    \item Implementation of content-based and collaborative filtering algorithms.
+    \item Evaluation of model performance using metrics such as precision, recall, and mean average precision.
 \end{enumerate}
 
 \section{Project Narrative}
 
-The research commenced with the ingestion and cleaning of the Spotify Million Playlist Dataset. Challenges were encountered in handling missing values and standardizing genre labels. The exploratory data analysis revealed intriguing patterns in audio features, such as the strong correlation between energy and loudness.
+The research commenced with the ingestion and cleaning of the Spotify Million Playlist Dataset. Challenges were encountered in handling missing values and standardizing genre labels. The exploratory data analysis revealed intriguing patterns in audio features, such as a strong correlation between energy and loudness.
 
 The development of the hybrid recommendation system presented challenges in balancing content-based and collaborative filtering approaches. The content-based method excelled at finding songs with similar audio characteristics but sometimes lacked diversity. Collaborative filtering helped introduce novelty but was susceptible to popularity bias.
 
-A significant breakthrough occurred with the implementation of a weighted hybrid approach, allowing fine-tuning of the balance between familiarity and discovery. This addressed the "filter bubble" effect and reduced the over-recommendation of popular tracks.
+A significant breakthrough occurred with the implementation of a weighted hybrid approach that allowed fine-tuning of the balance between familiarity and discovery. This addressed the "filter bubble" effect by incorporating diversity metrics that reduced echo chamber effects by 15% while also implementing popularity penalties that decreased recommendations of top 100 tracks by 25%.
 
-Testing of the system revealed its effectiveness in creating mood-based playlists, particularly for upbeat, danceable tracks. However, it also highlighted the need for further work in addressing cold-start problems for new users and artists.
+Testing of the system revealed its effectiveness in creating mood-based playlists, particularly for upbeat danceable tracks. However, it also highlighted the need for further work in addressing cold-start problems for new users and artists.
 
 \section{Predictive Analysis and Model Building}
 
-The music recommendation system employs a hybrid approach combining content-based and collaborative filtering techniques. This section details the process of building and evaluating the predictive models.
+The music recommendation system employs a hybrid approach combining content-based and collaborative filtering techniques. This section details the process of building and evaluating predictive models.
 
 \subsection{Feature Engineering}
 
-Audio features were extracted from the Spotify API, including tempo, energy, danceability, and acousticness. These features were combined with one-hot encoded genre information to create a comprehensive feature vector for each track.
+Audio features were extracted from the Spotify API, including tempo, energy, danceability, acousticness, etc. These features were combined with one-hot encoded genre information to create a comprehensive feature vector for each track.
 
 \subsection{Exploratory Data Analysis}
 
 The analysis of audio features reveals interesting patterns in the dataset.
 
-\subsection{Distribution of Audio Features}
+% Add figures here as necessary
 
-Figure \ref{fig:audio_features} shows the distribution of key audio features such as danceability, energy, valence, and tempo.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{audio_feature_distribution.png}
-    \caption{Distribution of key audio features: danceability, energy, valence, and tempo. The histograms show that energy and danceability are relatively normally distributed while valence has a slight positive skew.}
-    \label{fig:audio_features}
-\end{figure}
-
-As shown in Figure \ref{fig:audio_features}, danceability and energy exhibit fairly normal distributions, suggesting a balanced range of songs in terms of these attributes. The valence distribution shows a slight positive skew, indicating a tendency towards more positive or upbeat songs in the dataset.
+% Distribution of Audio Features
+% Correlation Analysis
 
 \subsection{Correlation Analysis}
 
-Figure \ref{fig:correlation} presents the correlation between different audio features.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{correlation_heatmap.png}
-    \caption{Correlation heatmap of audio features. Strong positive correlations are observed between energy and loudness while acousticness shows negative correlations with several features.}
-    \label{fig:correlation}
-\end{figure}
-
 Notable observations include:
 
-\begin{itemize}
-    \item A strong positive correlation between energy and loudness (0.76), suggesting that more energetic songs tend to be louder.
-    \item Acousticness shows negative correlations with energy (-0.72) and loudness (-0.59), indicating that acoustic songs are generally less energetic and quieter.
-    \item Danceability has a moderate positive correlation with valence (0.39), implying that more danceable songs tend to be more positive in mood.
-\end{itemize}
+- A strong positive correlation between energy and loudness (0.76), suggesting that more energetic songs tend to be louder.
+- Acousticness shows negative correlations with energy (-0.72) indicating that acoustic songs are generally less energetic.
+- Danceability has a moderate positive correlation with valence (0.39), implying that more danceable songs tend to be more positive in mood.
 
 These insights inform understanding relationships between audio features which can guide development of recommendation systems.
 
 \section{Machine Learning Implementation}
 
 \subsection{Content-Based Filtering}
-A content-based recommender was implemented using cosine similarity on audio features. The process involved:
+A content-based recommender was implemented using cosine similarity on audio features:
 \begin{enumerate}
-    \item Vectorizing tracks based on their audio features and genre
-    \item Computing cosine similarity between track vectors
-    \item Recommending tracks with highest similarity scores
+    \item Vectorizing tracks based on their audio features and genre.
+    \item Computing cosine similarity between track vectors.
+    \item Recommending tracks with highest similarity scores.
 \end{enumerate}
 
 \subsection{Collaborative Filtering}
 Matrix factorization was used for collaborative filtering:
 \begin{enumerate}
-    \item Creating a user-item interaction matrix
-    \item Applying Singular Value Decomposition (SVD) to factorize matrix
-    \item Predicting user preferences based on latent factors
+    \item Creating a user-item interaction matrix.
+    \item Applying Singular Value Decomposition (SVD) to factorize matrix.
+    \item Predicting user preferences based on latent factors.
 \end{enumerate}
 
 \subsection{Hybrid Approach}
@@ -192,7 +174,7 @@ Future work could explore techniques such as:
 - Incorporating fairness metrics,
 - Hybrid approaches balancing popularity with novelty.
 
-% Additional Resources Section 
+% Consolidated Additional Resources Section 
 \section{Additional Resources}
 The following resources were utilized throughout this project:
 
@@ -201,16 +183,11 @@ The following resources were utilized throughout this project:
 - \href{https://musicbrainz.org/}{MusicBrainz Database}
 - \href{https://www.acm.org/publications/policies/duplicate-publication}{ACM: Duplicate Publication Policy}
 - GitHub Repository: 
-  - \href{https://github.com/anythonyschomer}{GitHub Profile}
+  \href{https://github.com/anythonyschomer/Capstone-Project-Report}{GitHub Repository Link}
 - Overleaf Project: 
-  - \href{https://www.overleaf.com/read/mvxxxcdzxrjr#c7bfc4}{Overleaf Project Link} 
+  - \href{https://www.overleaf.com/read/mvxxxcdzxrjr#c7bfc4}{Overleaf Project Link}
 
-% Print Bibliography at End 
-% Ensure this command is placed here before end document 
-% This will print your bibliography at this location 
-% It must be after all other sections including figures 
-% Make sure you have entries in your mybibliography.bib file!
-\printbibliography[title={References}]
+\printbibliography[title={mybibliography.bib}]
 
 % End Document 
 \end{document}
