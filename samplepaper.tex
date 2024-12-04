@@ -6,6 +6,8 @@
 
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage[backend=biber, style=alphabetic, sorting=none]{biblatex}
+\addbibresource{mybibliography.bib} % Ensure this points to your .bib file
 
 \begin{document}
 
@@ -190,6 +192,7 @@ Future work could explore techniques such as:
 - Incorporating fairness metrics,
 - Hybrid approaches balancing popularity with novelty.
 
+% Additional Resources Section 
 \section{Additional Resources}
 The following resources were utilized throughout this project:
 
@@ -198,76 +201,16 @@ The following resources were utilized throughout this project:
 - \href{https://musicbrainz.org/}{MusicBrainz Database}
 - \href{https://www.acm.org/publications/policies/duplicate-publication}{ACM: Duplicate Publication Policy}
 - GitHub Repository: 
-  - \href{https://github.com/anythonyschomer/Capstone-Project-Report}{Capstone Project Report}
+  - \href{https://github.com/anythonyschomer}{GitHub Profile}
+- Overleaf Project: 
+  - \href{https://www.overleaf.com/read/mvxxxcdzxrjr#c7bfc4}{Overleaf Project Link} 
 
-GitHub repository contains:
-- Python scripts for data processing/model implementation,
-- Jupyter notebooks with detailed analysis/visualizations,
-- Dataset samples/feature descriptions,
-- Documentation on how to run recommendation system.
+% Print Bibliography at End 
+% Ensure this command is placed here before end document 
+% This will print your bibliography at this location 
+% It must be after all other sections including figures 
+% Make sure you have entries in your mybibliography.bib file!
+\printbibliography[title={References}]
 
-% References moved here at end
-
-\bibliographystyle{spphys} 
-\bibliography{} 
-
-% Add references manually here if not using BibTeX
-
-% Example references:
-% 1) Spotify Million Playlist Dataset Challenge - AIcrowd - https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge 
-% 2) Schedl et al., Current challenges... - International Journal... 
-% 3) Jacobson et al., Music personalization at Spotify... 
-% 4) Lee et al., How similar is too similar?... 
-% 5) Bertin-Mahieux et al., The Million Song Dataset...
-
-% You can uncomment above lines if you're using BibTeX or add your references manually below
-
-% Example manual entries:
-%\begin{thebibliography}{99} 
-%\bibitem{} Author1 et al., Title..., Journal..., Year... 
-%\bibitem{} Author2 et al., Title..., Journal..., Year...
-%\end {thebibliography} 
-
-% Appendix section remains unchanged
-
-\appendix
-\section{Code Sample: Feature Engineering}
-
-Below is a Python code snippet demonstrating feature engineering process for audio features:
-
-\begin{verbatim}
-import pandas as pd
-import numpy as np
-from sklearn.preprocessing import StandardScaler
-
-def engineer_audio_features(df):
-    # Select relevant features
-    audio_features = ['danceability', 'energy', 'loudness', 'speechiness', 
-                      'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo']
-    
-    # Create a copy of dataframe with selected features
-    X = df[audio_features].copy()
-    
-    # Handle missing values
-    X = X.fillna(X.mean())
-    
-    # Normalize features
-    scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(X)
-    
-    # Create interaction features
-    X['energy_valence'] = X['energy'] * X['valence']
-    X['danceability_tempo'] = X['danceability'] * X['tempo']
-    
-    # Bin tempo into categories
-    X['tempo_category'] = pd.cut(X['tempo'], bins=5, labels=['Very Slow', 'Slow', 'Medium', 'Fast', 'Very Fast'])
-    
-    return X
-
-# Usage example:
-processed_features = engineer_audio_features(raw_data)
-\end{verbatim}
-
-This code demonstrates how audio features are preprocessed including handling missing values normalization creating interaction features categorizing continuous variables like tempo.
-
-\end {document}
+% End Document 
+\end{document}
